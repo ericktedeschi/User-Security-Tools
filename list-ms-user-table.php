@@ -223,7 +223,7 @@ class User_List_Table extends WP_List_Table {
      * @uses $this->set_pagination_args()
      **************************************************************************/
     function prepare_items() {
-        $per_page = 5; //$this->get_items_per_page('users_network_per_page');
+        $per_page = $this->get_items_per_page('users_network_per_page');
 
         $columns = $this->get_columns();
         $hidden = array();

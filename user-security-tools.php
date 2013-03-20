@@ -589,6 +589,7 @@ class UserSecurityTools
         } // end switch
 
         if ($showListTable) {
+        $usersListTable->prepare_items();
 ?>
             <div class="wrap">
                 <div id="icon-users" class="icon32"><br/></div>
@@ -599,7 +600,6 @@ class UserSecurityTools
                 </form>
                 <form id="users-filter" method="post">
                     <input type="hidden" name="page" value="<?php echo esc_attr($_REQUEST['page']); ?>" />
-                    <?php $usersListTable->prepare_items(); ?>
                     <?php $usersListTable->display() ?>
                 </form>
             </div>
@@ -758,6 +758,13 @@ class UserSecurityTools
      */
     public function pluginActivation() {
         global $wpdb;
+
+        // If is an network installation, the plugin only can be activated from 
+        // Network Admin Screen
+        if (is_multisite() && !is_network_admin()) {
+            die('In Network install, the plugin must be activated from Network Admin Screen');
+        }
+
         // TODO: Adds usermeta for all users
         $users = $wpdb->get_results($wpdb->prepare("SELECT ID FROM {$wpdb->users};"), 'ARRAY_A');
 
