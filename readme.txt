@@ -1,9 +1,9 @@
 === User Security Tools ===
 Contributors: ericktedeschi
 Tags: security, user, brute force, password, block, unblock, network install, password policy, password history
-Requires at least: 3.2.1
-Tested up to: 3.3.1
-Stable tag: 1.1.1
+Requires at least: 3.3
+Tested up to: 3.5.1
+Stable tag: 1.1.2
 
 Security Tools for user management: stop brute force, password policy, password reset, password history.
 
@@ -42,3 +42,9 @@ will be configurable).
 
 = 1.1.1 =
 * BUG: The password policy is not applied when user's password is reset
+
+= 1.1.2 =
+* Show the search field on User Security Tools page
+* The list of the users shows more than fixed 5 items
+* BUG: When a new user is created, include the 'first' password to the history (bug reported by Jason Buscema)
+
