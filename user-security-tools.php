@@ -3,7 +3,7 @@
 Plugin Name: User Security Tools
 Plugin URI: http://oerick.com/user-security-tools
 Description: Security Tools for user management: stop brute force, password policy, password reset, password history.
-Version: 1.1.2
+Version: 1.1.1
 Author: Erick Belluci Tedeschi
 Author URI: http://oerick.com
 License: GPL2
@@ -797,7 +797,17 @@ class UserSecurityTools
      */
     public function addUserDefaultMeta($user_id) {
         $user_id = (int)$user_id;
-        add_user_meta($user_id, 'sust_lastpasswords', array(), true);
+
+        // BUG BY: Jason Buscema - Include the password of the new user in 
+        // history
+        
+        $user_data = get_user_by('id', $user_id);
+        $sust_lastpasswords[] = array(
+            'date' => date('Y-m-d H:i:s', time()),
+            'hash' => $user_data->user_pass
+        );
+
+        add_user_meta($user_id, 'sust_lastpasswords', $sust_lastpasswords, true);
         add_user_meta($user_id, 'sust_locked', 0, true);
         add_user_meta($user_id, 'sust_last_login_fail', 0, true);
         add_user_meta($user_id, 'sust_fail_attempts', 0, true);
