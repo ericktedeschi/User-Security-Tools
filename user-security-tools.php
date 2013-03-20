@@ -3,7 +3,7 @@
 Plugin Name: User Security Tools
 Plugin URI: http://oerick.com/user-security-tools
 Description: Security Tools for user management: stop brute force, password policy, password reset, password history.
-Version: 1.1.1
+Version: 1.1.2
 Author: Erick Belluci Tedeschi
 Author URI: http://oerick.com
 License: GPL2
